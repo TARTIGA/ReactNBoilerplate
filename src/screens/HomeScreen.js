@@ -36,7 +36,7 @@ class HomeScreen extends Component {
           <Button title="Go to Details" onPress={() => { navigation.navigate('Details') }}></Button>
           <Text>{''}</Text>
           <Button
-            onPress={() => navigation.navigate('MyModal')}
+            onPress={() => navigation.navigate('Modal')}
             title="Modal Open"
           />
         </View>
