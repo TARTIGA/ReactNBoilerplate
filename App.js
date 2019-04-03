@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import { Header, ImageCard } from './src/components'
 import { Layout } from './src/layouts'
+import { HomeScreen, DetailsScreen, ModalScreen } from './src/screens'
 import config from './src/config/config'
-
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 const URL = config.rootApi
 
 export default class App extends Component {
@@ -26,15 +27,32 @@ export default class App extends Component {
   render() {
     const { AppName, data } = this.state
     return (
-      <View>
-        <Header title={AppName} />
-        <Layout>
-          {data.map((item) => {
-            return <ImageCard key={item.id} data={item} />
-          })
-          }
-        </Layout>
-      </View>
+      <AppContainer />
     )
   }
 }
+const MainStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailsScreen,
+  },
+  {
+    initialRouteName: "Home"
+  }
+)
+
+const RootStack = createStackNavigator(
+  {
+    Main: {
+      screen: MainStack,
+    },
+    MyModal: {
+      screen: ModalScreen,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
+const AppContainer = createAppContainer(RootStack)
