@@ -18,7 +18,7 @@ class ModalScreen extends Component {
         <Text style={{ fontSize: 30 }}>This is a modal!</Text>
         <Image
           source={{ uri: 'https://wiki.gamedetectives.net/images/thumb/e/ed/CP2077.png/500px-CP2077.png' }}
-          style={{ width: 200, height: 50 }}
+          style={{ width: '100%', height: '30%' }}
         />
         <Button
           onPress={() => this.props.navigation.goBack()}

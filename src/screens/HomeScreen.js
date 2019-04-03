@@ -3,22 +3,16 @@ import {
   Text,
   View,
   ScrollView,
-  Button
+  Button,
+  Icon
 } from 'react-native'
 import { Logo } from '../components'
 
 class HomeScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      headerTitle: <Logo />,
-      headerRight: (
-        <Button
-          onPress={navigation.getParam('increaseCount')}
-          title="+1"
-          color="#000"
-        />
-      ),
-    };
+
+  static navigationOptions = {
+    headerTitle: <Logo />,
+    drawerLabel: 'Home',
   };
 
   componentDidMount() {
@@ -43,7 +37,7 @@ class HomeScreen extends Component {
           <Text>{''}</Text>
           <Button
             onPress={() => navigation.navigate('MyModal')}
-            title="Modal"
+            title="Modal Open"
           />
         </View>
       </ScrollView>

@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { Header, ImageCard } from './src/components'
 import { Layout } from './src/layouts'
-import { HomeScreen, DetailsScreen, ModalScreen } from './src/screens'
+import { HomeScreen, DetailsScreen } from './src/screens'
 import config from './src/config/config'
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
 const URL = config.rootApi
 
 export default class App extends Component {
@@ -31,7 +31,7 @@ export default class App extends Component {
     )
   }
 }
-const MainStack = createStackNavigator(
+const AppStackNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     Details: DetailsScreen,
@@ -40,19 +40,11 @@ const MainStack = createStackNavigator(
     initialRouteName: "Home"
   }
 )
-
-const RootStack = createStackNavigator(
+const DrawerNavigator = createDrawerNavigator(
   {
-    Main: {
-      screen: MainStack,
-    },
-    MyModal: {
-      screen: ModalScreen,
-    },
-  },
-  {
-    mode: 'modal',
-    headerMode: 'none',
+    Home: HomeScreen,
+    Details: DetailsScreen,
   }
-);
-const AppContainer = createAppContainer(RootStack)
+)
+
+const AppContainer = createAppContainer(DrawerNavigator)
